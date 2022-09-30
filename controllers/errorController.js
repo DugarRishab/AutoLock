@@ -126,6 +126,7 @@ module.exports = (err, req, res, next) => {  // <- Global Error Handling Middlew
 		if (error.name === 'ValidationError') error = handleValidationError(error);
 		if (error.name === 'JsonWebTokenError') error = handleJWTError(error);
 		if (error.name === 'TokenExpiredError') error = handleJWTExpiredError(error);
+		if (error.code === "ECONNRESET") error = "ECCONRESET";
 		//console.error(error);
 
 		sendErrorProd(error, req, res);
