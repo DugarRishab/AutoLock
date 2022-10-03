@@ -45,21 +45,21 @@ const server = app.listen(port, () => {
 });
 server.timeout = 0;
 const io = socketio(server, {
-    // cors: {
-    //     origin: 'http://localhost:3000',
-    // },
+    cors: {
+        origin: 'http://localhost:3000',
+    },
 });
-// io.use((socket, next) => {
-// 	const token = socket.handshake.auth.token;
-// 	// console.log(token, process.env.API_KEY);
-// 	if (token !== process.env.API_KEY) {
-// 		console.log("Lock Not Authorized");
-// 		next(new Error("Lock Not Authorized"));
-// 	}
-// 	else {
-// 		next();
-// 	}
-// });
+io.use((socket, next) => {
+	const token = socket.handshake.auth.token;
+	// console.log(token, process.env.API_KEY);
+	if (token !== process.env.API_KEY) {
+		console.log("Lock Not Authorized");
+		next(new Error("Lock Not Authorized"));
+	}
+	else {
+		next();
+	}
+});
 
 listeners(io);
 
