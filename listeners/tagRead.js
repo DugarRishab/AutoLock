@@ -10,9 +10,10 @@ module.exports = (io) => {
             async (data) => {
                 try {
                     const tag = await Tag.findById(data.tagId);
+                    console.log(data);
                     if (!tag) tagDenied(socket);
                     else {
-                        console.log(tag.confirmToken(data.tagToken)); 
+                        console.log(await tag.confirmToken(data.tagToken)); 
                     }
                 } catch (err) {
                     console.error(err.message);
