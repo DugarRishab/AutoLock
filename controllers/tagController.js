@@ -6,7 +6,7 @@ const catchAsync = require('../utils/catchAsync');
 exports.createTag = catchAsync(async (req, res, next) => {
 	const tag = await Tag.create({
 		name: req.body.name,
-		token: req.body.token
+		uid: req.body.uid
 	});
 
 	res.status(200).json({
