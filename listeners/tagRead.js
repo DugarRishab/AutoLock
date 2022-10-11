@@ -9,6 +9,7 @@ module.exports = (io) => {
         socket.on(
             'tagRead',
             async (data) => {
+                console.log(data);
                 try {
                     const tag = await Tag.findById(data.tagUId);
                     const lock = await Lock.findById(data.lockId);
