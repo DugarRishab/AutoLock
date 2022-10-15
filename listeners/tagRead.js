@@ -11,7 +11,7 @@ module.exports = (io) => {
             async (data) => {
                 console.log(data);
                 try {
-                    const tag = await Tag.find({uid: data.tagUID});
+                    const tag = await Tag.findOne({uid: data.tagUID});
                     const lock = await Lock.findById(data.lockID);
                     console.log(typeof data);
                     console.log(data.tagUID);
