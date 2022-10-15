@@ -13,7 +13,8 @@ module.exports = (io) => {
                 try {
                     const tag = await Tag.findById(data.tagUId);
                     const lock = await Lock.findById(data.lockId);
-                    console.log(data);
+                    console.log(typeof data);
+                    console.log(data.tagUID);
                     if (!tag) tagDenied(socket);
                     else {
                         console.log(lock.tags.includes(tag.id)); 
