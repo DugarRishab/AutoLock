@@ -18,6 +18,7 @@ module.exports = (io) => {
                     if (!tag) tagDenied(socket);
                     else if (!lock) tagDenied(socket)
                     else {
+                        console.log(tag);
                         console.log(lock.tags.includes(tag.id)); 
                         if (lock.tags.includes(tag.id)) {
                             tagAuthorized(socket);
