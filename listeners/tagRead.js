@@ -11,11 +11,12 @@ module.exports = (io) => {
             async (data) => {
                 console.log(data);
                 try {
-                    const tag = await Tag.find({uid: data.tagUId});
-                    const lock = await Lock.findById(data.lockId);
+                    const tag = await Tag.find({uid: data.tagUID});
+                    const lock = await Lock.findById(data.lockID);
                     console.log(typeof data);
                     console.log(data.tagUID);
                     if (!tag) tagDenied(socket);
+                    else if (!lock) tagDenied(socket)
                     else {
                         console.log(lock.tags.includes(tag.id)); 
                         if (lock.tags.includes(tag.id)) {
