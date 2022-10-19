@@ -23,7 +23,7 @@ module.exports = (io) => {
                         console.log(lock.tags.includes(tag.id)); 
                         if (lock.tags.includes(tag.id)) {
                             tagAuthorized(socket);
-                            lockOpen(io, lock.id, tag.uid);
+                            lockOpen(io, lock.id, tag.name);
                         }
                         else tagDenied(socket);
                     }
