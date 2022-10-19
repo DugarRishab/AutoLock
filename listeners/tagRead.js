@@ -3,6 +3,7 @@ const Lock = require('../models/lockModel');
 const catchAsync = require("../utils/catchAsync");
 const tagDenied = require("../events/tagDenied");
 const tagAuthorized = require("../events/tagAuthorized");
+const lockOpen = require("../events/lockOpen");
 
 module.exports = (io) => {
     io.on('connection', (socket) => {
@@ -22,6 +23,7 @@ module.exports = (io) => {
                         console.log(lock.tags.includes(tag.id)); 
                         if (lock.tags.includes(tag.id)) {
                             tagAuthorized(socket);
+                            lockOpen(io, lock.id, tag.uid);
                         }
                         else tagDenied(socket);
                     }
