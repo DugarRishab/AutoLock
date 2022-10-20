@@ -1,6 +1,8 @@
-module.exports = (io, lockID, tagName) => {
+module.exports = (io, lockID, tagName, auth) => {
 	io.sockets.emit('lockOpened', {
 		lockID,
-		tagName
+		tagName,
+		auth,
+		time: Date.now()
 	})
 }

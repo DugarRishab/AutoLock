@@ -23,9 +23,12 @@ module.exports = (io) => {
                         console.log(lock.tags.includes(tag.id)); 
                         if (lock.tags.includes(tag.id)) {
                             tagAuthorized(socket);
-                            lockOpen(io, lock.id, tag.name);
+                            lockOpen(io, lock.id, tag.name, true);
                         }
-                        else tagDenied(socket);
+                        else {
+                            tagDenied(socket);
+                            lockOpen(io, lock.id, tag.name , false);
+                        }
                     }
                 } catch (err) {
                     console.error(err.message);
