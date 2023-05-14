@@ -4,5 +4,5 @@ module.exports = (io) => {
 		socket.on('error', (err) => {
 			console.log("ERROR ->", err)
 		})
-	});
+	})
 }
